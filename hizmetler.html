@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetlerimiz | FB Elektrik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* GENEL TASARIM */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        header {
+            background: #222;
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+
+        .logo span { color: #fff; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 20px; }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* SAYFA BAŞLIĞI */
+        .page-title {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1558211583-d28f610b15a0?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-title h1 { font-size: 3rem; color: #f1c40f; }
+
+        /* HİZMET KARTLARI IZGARASI */
+        .services-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-box {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .service-box i {
+            font-size: 3.5rem;
+            color: #f1c40f;
+            margin-bottom: 20px;
+        }
+
+        .service-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* GÖRSELLİ TANITIM KISMI */
+        .promo-wrap {
+            background: #fff;
+            padding: 60px 0;
+            margin-top: 50px;
+        }
+
+        .promo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 0 20px;
+            gap: 40px;
+        }
+
+        .promo-text { flex: 1; min-width: 300px; }
+        .promo-img { flex: 1; min-width: 300px; }
+        .promo-img img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .promo-text h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        .promo-list { list-style: none; margin-top: 20px; }
+        .promo-list li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .promo-list i { color: #27ae60; margin-right: 15px; }
+
+        /* MALZEME KALİTESİ BANDI */
+        .quality-banner {
+            background: #f1c40f;
+            color: #222;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 0;
+        }
+
+        /* ALT İLETİŞİM ALANI (YENİ EKLENEN) */
+        .footer-contacts {
+            background: #1a1a1a;
+            padding: 50px 20px;
+            text-align: center;
+            color: #fff;
+            border-top: 4px solid #f1c40f;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .contact-card {
+            background: #222;
+            padding: 25px;
+            border-radius: 15px;
+            min-width: 280px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .contact-card:hover { border-color: #f1c40f; }
+        .contact-card h4 { color: #f1c40f; margin-bottom: 10px; font-size: 1.3rem; }
+        .contact-card a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .contact-card i { margin-right: 8px; color: #f1c40f; }
+
+        footer {
+            background: #111;
+            color: #777;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* WHATSAPP MULTI-CONTACT */
+        .whatsapp-wrapper {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .whatsapp-float {
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .whatsapp-menu {
+            display: none;
+            flex-direction: column;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            min-width: 200px;
+            overflow: hidden;
+        }
+
+        .whatsapp-menu a {
+            padding: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .whatsapp-menu a:hover { background: #f9f9f9; color: #25d366; }
+
+        @media (max-width: 768px) {
+            .page-title h1 { font-size: 2rem; }
+            .footer-grid { flex-direction: column; align-items: center; }
+            .contact-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">FB <span>Elektrik</span></div>
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hizmetler.html">Hizmetlerimiz</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-title">
+        <h1>Profesyonel Hizmetlerimiz</h1>
+        <p>Eviniz ve iş yeriniz için garantili elektrik çözümleri</p>
+    </section>
+
+    <section class="services-container">
+        <div class="service-box">
+            <i class="fas fa-bolt"></i>
+            <h3>Arıza Tespit & Onarım</h3>
+            <p>Sigorta arızaları, kısa devrelerin giderilmesi ve komple tesisat yenileme işlemleri.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Aydınlatma Sistemleri</h3>
+            <p>Şerit LED, gizli ışık, bahçe aydınlatması ve modern avize montajı hizmetleri.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Kaçak Akım Rölesi</h3>
+            <p>Hayatınızı ve cihazlarınızı koruyan kaçak akım rölesi montajı ve pano revizyonu.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-video"></i>
+            <h3>Güvenlik & Kamera</h3>
+            <p>IP kamera, görüntülü diyafon ve akıllı kilit sistemleri kurulum ve bakımı.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-network-wired"></i>
+            <h3>İnternet Altyapı</h3>
+            <p>Fiber kablo çekimi, modem kurulumu ve dahili telefon hattı onarımları.</p>
+        </div>
+        <div class="service-box">
+            <i class="fas fa-tv"></i>
+            <h3>TV & Uydu Sistemleri</h3>
+            <p>Merkezi uydu sistemleri, TV montajı ve kablo düzenleme çalışmaları.</p>
+        </div>
+    </section>
+
+    <section class="promo-wrap">
+        <div class="promo-container">
+            <div class="promo-text">
+                <h2>Arıza Mı Var? Biz Çözeriz!</h2>
+                <p>LED aydınlatmadan TV kurulumuna, doğalgaz tesisat elektriğinden komple bina tesisatına kadar geniş bir yelpazede hizmet veriyoruz.</p>
+                <ul class="promo-list">
+                    <li><i class="fas fa-check-circle"></i> 7/24 Acil Arıza Müdahale</li>
+                    <li><i class="fas fa-check-circle"></i> Şerit LED & Spot Uygulamaları</li>
+                    <li><i class="fas fa-check-circle"></i> Mağaza ve Ofis Tesisat Kurulumu</li>
+                </ul>
+            </div>
+            <div class="promo-img">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Elektrikçi Çalışırken">
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-banner">
+        <h2>Kullandığımız Malzeme Kalitesi</h2>
+        <p>Siemens, Schneider ve Viko gibi TSE onaylı lider markalarla güvenliğinizi sağlıyoruz.</p>
+    </section>
+
+    <section class="footer-contacts">
+        <h2>Bize Hemen Ulaşın</h2>
+        <div class="footer-grid">
+            <div class="contact-card">
+                <h4>Barış Can</h4>
+                <a href="tel:+905349614046"><i class="fas fa-phone"></i> 0534 961 40 46</a>
+            </div>
+            <div class="contact-card">
+                <h4>Furkan Yörük</h4>
+                <a href="tel:+905303588405"><i class="fas fa-phone"></i> 0530 358 84 05</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FB Elektrik - Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-menu" id="wsMenu">
+            <a href="https://wa.me/905349614046" target="_blank"><i class="fab fa-whatsapp"></i> Barış Can</a>
+            <a href="https://wa.me/905303588405" target="_blank"><i class="fab fa-whatsapp"></i> Furkan Yörük</a>
+        </div>
+        <button class="whatsapp-float" onclick="toggleWhatsApp()"><i class="fab fa-whatsapp"></i></button>
+    </div>
+
+    <script>
+        function toggleWhatsApp() {
+            var menu = document.getElementById("wsMenu");
+            menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+        }
+        window.onclick = function(event) {
+            if (!event.target.closest('.whatsapp-wrapper')) {
+                document.getElementById("wsMenu").style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
